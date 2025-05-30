@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --dark-color: #1a252f;
+            --light-color: #ecf0f1;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-small:hover {
+            background: #1a252f;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            display: inline-block;
+        }
+
+        header h1 span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: inline-block;
+            float: right;
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            float: right;
+            font-size: 1.5rem;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080?text=Hacking+Background');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 60px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Featured Articles */
+        .featured-articles {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .featured-articles h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .card-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+        }
+
+        /* Tutorials Section */
+        .tutorials {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .tutorials h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .tutorial-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .tutorial-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .difficulty {
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .difficulty.beginner {
+            background-color: var(--success-color);
+        }
+
+        .difficulty.intermediate {
+            background-color: var(--warning-color);
+        }
+
+        .difficulty.advanced {
+            background-color: var(--danger-color);
+        }
+
+        .duration {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .tutorial-item h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .tutorial-item p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .resources h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .resource-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .category {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .category h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category ul {
+            list-style: none;
+        }
+
+        .category ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .category ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .about h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: #fff;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.show {
+                display: block;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .card,
+        .dark-mode .tutorial-item,
+        .dark-mode .category {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .card-content h3,
+        .dark-mode .tutorial-item h3,
+        .dark-mode .category h3 {
+            color: #fff;
+        }
+        
+        .dark-mode .card-content p,
+        .dark-mode .tutorial-item p {
+            color: #aaa;
+        }
+        
+        .dark-mode .featured-articles,
+        .dark-mode .resources {
+            background-color: #1a1a1a;
+        }
+        
+        .dark-mode .tutorials,
+        .dark-mode .about {
+            background-color: #121212;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML Content -->
+    <header>
+        <div class="container">
+            <h1>Hack<span>Blog</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#articles">Articles</a></li>
+                    <li><a href="#tutorials">Tutorials</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Learn Ethical Hacking</h2>
+            <p>Your ultimate resource for cybersecurity knowledge, penetration testing, and ethical hacking techniques.</p>
+            <a href="#articles" class="btn">Start Learning</a>
+        </div>
+    </section>
+
+    <section id="articles" class="featured-articles">
+        <div class="container">
+            <h2>Featured Articles</h2>
+            <div class="articles-grid">
+                <article class="card">
+                    <img src="https://via.placeholder.com/300x200?text=PenTesting" alt="Penetration Testing">
+                    <div class="card-content">
+                        <h3>Getting Started with Penetration Testing</h3>
+                        <p>Learn the basics of penetration testing and how to identify vulnerabilities in systems.</p>
+                        <a href="https://www.w3schools.com/cybersecurity/cybersecurity_prenetration_testing.php" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Kali+Linux" alt="Kali Linux">
+                    <div class="card-content">
+                        <h3>Kali Linux Tools Every Hacker Should Know</h3>
+                        <p>Explore the essential tools in Kali Linux for ethical hacking and security research.</p>
+                        <a href="https://www.techtarget.com/searchsecurity/tip/Top-Kali-Linux-tools-and-how-to-use-them" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Web+Security" alt="Web Security">
+                    <div class="card-content">
+                        <h3>Common Web Vulnerabilities and How to Fix Them</h3>
+                        <p>Understand common web security issues like XSS, SQLi, and CSRF with mitigation techniques.</p>
+                        <a href="https://medium.com/devquicktips/the-basics-of-web-security-xss-csrf-sqli-482d253a34bf" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorials" class="tutorials">
+        <div class="container">
+            <h2>Latest Tutorials</h2>
+            <div class="tutorial-list">
+                <div class="tutorial-item">
+                    <div class="tutorial-meta">
+                        <span class="difficulty beginner">Beginner</span>
+                        <span class="duration">15 min</span>
+                    </div>
+                    <h3>Setting Up Your Hacking Lab</h3>
+                    <p>Step-by-step guide to creating a safe environment for practicing ethical hacking techniques.</p>
+                    <a href="https://youtube.com/playlist?list=PLwO5-rumi8A4J7h4Fm92TEC00gfZUk7ls&si=uJlX6vutX9RgXRZz" class="btn-small">View Tutorial</a>
+                </div>
+                <div class="tutorial-item">
+                    <div class="tutorial-meta">
+                        <span class="difficulty intermediate">Intermediate</span>
+                        <span class="duration">30 min</span>
+                    </div>
+                    <h3>Network Scanning with Nmap</h3>
+                    <p>Learn how to use Nmap for network discovery and security auditing.</p>
+                    <a href="https://youtu.be/4t4kBkMsDbQ?si=bSKSiWIF8rYIj9EK" class="btn-small">View Tutorial</a>
+                </div>
+                <div class="tutorial-item">
+                    <div class="tutorial-meta">
+                        <span class="difficulty advanced">Advanced</span>
+                        <span class="duration">45 min</span>
+                    </div>
+                    <h3>Exploiting Buffer Overflow Vulnerabilities</h3>
+                    <p>Deep dive into buffer overflow attacks and how to protect against them.</p>
+                    <a href="https://youtu.be/AWaV0y2SU8U?si=MoaKFBlvrYJFaSvn" class="btn-small">View Tutorial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2>Resources</h2>
+            <div class="resource-categories">
+                <div class="category">
+                    <h3><i class="fas fa-book"></i> Books</h3>
+                    <ul>
+                        <li>The Web Application Hacker's Handbook</li>
+                        <li>Penetration Testing: A Hands-On Introduction</li>
+                        <li>Black Hat Python</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3><i class="fas fa-tools"></i> Tools</h3>
+                    <ul>
+                        <li>Kali Linux</li>
+                        <li>Metasploit Framework</li>
+                        <li>Burp Suite</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3><i class="fas fa-graduation-cap"></i> Certifications</h3>
+                    <ul>
+                        <li>CEH (Certified Ethical Hacker)</li>
+                        <li>OSCP (Offensive Security Certified Professional)</li>
+                        <li>CISSP (Certified Information Systems Security Professional)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About HackBlog</h2>
+            <p>HackBlog is dedicated to providing high-quality educational content about ethical hacking and cybersecurity. Our mission is to help security professionals and enthusiasts learn about penetration testing, vulnerability assessment, and defensive security techniques.</p>
+            <p>All content is provided for educational purposes only. Unethical hacking is illegal and we do not condone any malicious activities.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 HackBlog. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="disclaimer">Disclaimer: This blog is for educational purposes only. The techniques discussed should only be used on systems you own or have permission to test.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript Code
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navMenu = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        navMenu.classList.remove('show');
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add active class to current section in navigation
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('nav ul li a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Simulate loading articles (in a real app, this would be an API call)
+            setTimeout(() => {
+                const articlesGrid = document.querySelector('.articles-grid');
+                
+                // This would be replaced with actual data fetching
+                const moreArticles = [
+                    {
+                        title: "Password Cracking Techniques and Prevention",
+                        desc: "Explore common password cracking methods and how to create secure passwords.",
+                        img: "https://via.placeholder.com/300x200?text=Password+Security"
+                    },
+                    {
+                        title: "Social Engineering: The Human Factor",
+                        desc: "Learn about social engineering attacks and how to protect against them.",
+                        img: "https://via.placeholder.com/300x200?text=Social+Engineering"
+                    }
+                ];
+                
+                moreArticles.forEach(article => {
+                    const articleElement = document.createElement('article');
+                    articleElement.className = 'card';
+                    articleElement.innerHTML = `
+                        <img src="${article.img}" alt="${article.title}">
+                        <div class="card-content">
+                            <h3>${article.title}</h3>
+                            <p>${article.desc}</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    `;
+                    articlesGrid.appendChild(articleElement);
+                });
+            }, 1500);
+            
+            // Dark mode toggle
+            const darkModeToggle = document.createElement('div');
+            darkModeToggle.className = 'dark-mode-toggle';
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            darkModeToggle.style.position = 'fixed';
+            darkModeToggle.style.bottom = '20px';
+            darkModeToggle.style.right = '20px';
+            darkModeToggle.style.backgroundColor = 'var(--primary-color)';
+            darkModeToggle.style.color = '#fff';
+            darkModeToggle.style.width = '50px';
+            darkModeToggle.style.height = '50px';
+            darkModeToggle.style.borderRadius = '50%';
+            darkModeToggle.style.display = 'flex';
+            darkModeToggle.style.justifyContent = 'center';
+            darkModeToggle.style.alignItems = 'center';
+            darkModeToggle.style.cursor = 'pointer';
+            darkModeToggle.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            darkModeToggle.style.zIndex = '1000';
+            
+            document.body.appendChild(darkModeToggle);
+            
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+            
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
